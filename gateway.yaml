@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: nginx-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - 'nginx.10.191.253.245.sslip.io'
+    port:
+      name: http
+      number: 80
+      protocol: HTTP

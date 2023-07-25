@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: acme
+  namespace: tsm-test
+spec:
+  gateways:
+  - acme-gateway
+  hosts:
+  - 'nginx.10.191.253.245.sslip.io'
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: nginx
+        port:
+          number: 80
