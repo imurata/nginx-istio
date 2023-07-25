@@ -1,13 +1,17 @@
+# kind: Gatewayのリファンレスは以下
+# https://istio.io/latest/docs/reference/config/networking/gateway
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
   name: nginx-gateway
 spec:
+  # ingress-gateway Podのラベルを指定。全Namespaceを探索する。
   selector:
     istio: ingressgateway
   servers:
+  # VirtualServiceのHostに対応するものを記述
   - hosts:
-    - 'nginx.10.191.253.245.sslip.io'
+    - '*.nginx.10.191.253.245.sslip.io'
     port:
       name: http
       number: 80
