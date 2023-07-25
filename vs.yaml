@@ -1,18 +1,20 @@
-piVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: nginx-vs
 spec:
   gateways:
   - nginx-gateway
+  # 実際にアクセスするホスト名を記述
   hosts:
-  - 'nginx.10.191.253.245.sslip.io'
+  - 'ext.nginx.10.191.253.245.sslip.io'
   http:
   - match:
     - uri:
         prefix: /
     route:
     - destination:
+        # 対応するService名を記述
         host: nginx
         port:
           number: 80
